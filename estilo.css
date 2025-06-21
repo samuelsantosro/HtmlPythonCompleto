@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+    font-family: "impact";
+    font-size: 16pt;
+    text-align: center;
+}
+
+.checkbtn, #check { /*Botão para uso responsivo*/
+	position: fixed;
+    top: 20px;
+	right: 20px;
+	margin-left: 20px;
+	font-size: 30px;
+	color: white;
+	line-height: 80px;
+	cursor: pointer;
+	margin-right: 40px;
+	/* display: none;  Ativar e desativar para demostrar a diferença*/
+}
+
+#check {
+	display: none;   /*Desativa o botão quado utilizado acima de 520px*/
+  }
+
+  .logomarca{
+	width: 150px;
+	padding: 0 0;
+}
+
+.menu{
+    width: 100vw;
+    display: flex;
+}
+
+.menu ul{
+    list-style: none;
+    display: flex;
+    min-height: 10vh;
+    flex-grow: 1;
+}
+
+.menu ul li{
+    background-color: blue;
+    padding: 20px;
+    flex-grow: 1;
+    border: solid 1px #fff;
+    transition: background-color .2s linear;
+}
+
+.menu ul li a{
+    color: #f2f2f2;
+    text-decoration: none;
+}
+.menu ul li ul{
+    display: none;
+}
+
+.menu ul li:hover{
+    background-color: transparent;
+    cursor: pointer;
+}
+.menu ul li:hover > ul{
+    display: block;
+}
+.central{
+    display: flex;
+    width: 100vw;
+    min-height: 70vh;
+
+}
+
+.central aside{
+    background-color: green;
+    flex-grow: 1;
+}
+
+.central main{
+    background-color: yellow;
+    flex-grow: 3;
+}
+
+footer{
+    background-color: red;
+    width: 100vw;
+    min-height: 10vh;
+}
+
+@media(max-width: 520px){
+    .menu ul{
+        display: block;
+        position: fixed; 
+        top: 80px;
+        left: -100%;
+        width: 100%;
+ }
+ .menu ul li:hover > ul{
+    position: relative;
+    top: 0;
+    left: 0; 	
+}
+.checkbtn{
+    display: block;
+}
+
+#check:checked ~ ul {
+        left: 0;
+    transition: 0.5s;
+    }
+
+    .central aside{
+        min-height: 25vh;
+    }
+
+    .central main{
+        min-height: 25vh;
+    }
+    body{
+        font-size: 12pt;
+    }
+}

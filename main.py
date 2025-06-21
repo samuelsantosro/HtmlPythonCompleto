@@ -4,16 +4,9 @@ app = FastHTML()
 
 @app.get("/")
 def home():
-    grid = Html(
-    Link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/flexboxgrid/6.3.1/flexboxgrid.min.css", type="text/css"),
-    Div(
-        Div(Div("This takes up the full width", cls="box", style="background-color: #800000;"), cls="col-xs-12"),
-        Div(Div("This takes up half", cls="box", style="background-color: #008000;"), cls="col-xs-6"),
-        Div(Div("This takes up half", cls="box", style="background-color: #0000B0;"), cls="col-xs-6"),
-        cls="row", style="color: #fff;"
-    )
-    )
-    show(grid)
-    return grid
+    pag = '<!DOCTYPE html>    <html lang="pt-br">    <head>    <meta charset="UTF-8">    <meta http-equiv="X-UA-Compatible" content="IE=edge">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Página Inicial</title>    <link rel="stylesheet" href="estilo.css">    <script src="js/icone.js"></script>    </head>    <body>    <nav class="menu">    <img class="logomarca" src="img/logo-UNIP.png">    <label for="check" class="checkbtn">  <i class="fas fa-bars"></i></label>    <input type="checkbox" id="check">    <ul>    <li><a href="#">Home</a></li>    <li><a href="#">Arquivos</a>    <ul>    <li><a href="#">Documentos</a></li>    <li><a href="#">Outros</a></li>    </ul>   </li>    <li><a href="#">Cursos</a></li>    <li><a href="#">Notícias</a></li>    <li><a href="#">Contato</a></li>    </ul>    </nav>    <div class="central">   <aside>Esquerda</aside>    <main>Principal</main>    </div>    <footer>Rodapé</footer>    </body>   </html>'
+
+    pag2 = "<h1>teste</h1>"
+    return pag
 
 serve()
