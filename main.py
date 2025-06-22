@@ -19,6 +19,14 @@ def homepage():
     elemento_lista_api = gerar_lista_api(lista_api)
     return Titled("Lista de API", formulario2, elemento_lista_api)
 
+@routes("/pag3")
+def homepage():
+    formulario3 = gerar_formulario2()
+    elemento_lista_api = gerar_lista_api(lista_api)
+    #formulario4 = gerar_formulario4()
+    return Titled("Lista de API", formulario3, elemento_lista_api)
+
+
 @routes("/")
 def homepage():
     formulario = gerar_formulario()
@@ -64,7 +72,7 @@ def consultar(posicao: int):
     #print(url2)
     response = requests.get(url2)
     data = response.json()
-    print(data)
+    #print(data["nome"])
     return gerar_consulta(data)
 
 

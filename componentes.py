@@ -43,6 +43,24 @@ def gerar_formulario2():
     )
     return formulario2
 
+'''
+def gerar_formulario4():
+    formulario4 = Form(
+    Label("Código: ", Input(type="text", name="cod", placeholder="Código: ", id="cod")),
+    Label("Nome: ", Input(type="text", name="nome", placeholder="Nome: ", id="nome")),
+    Label("Email: ", Input(type="email", name="mail", placeholder="Email: ", id="mail")),
+    Label("Fone: ", Input(type="tel", name="fone", placeholder="Fone: ", id="fone")),       
+    Button("Enviar"),
+        method="post",
+        action="/adicionar_api",
+        hx_post= "/adicionar_api",
+        hx_target="#lista_api",
+        hx_swap="outherHTML"
+        
+    )
+    return formulario4
+'''
+
 def gerar_lista_tarefas(lista):
     itens_lista = [Li(tarefa, " - ", 
                       A("Excluir", hx_get= f"/deletar/{i}",  hx_target="#lista_tarefas", hx_swap="outherHTML"), " - ", 
@@ -64,17 +82,26 @@ def gerar_lista_api(lista2):
     return lista_local2
 
 def gerar_consulta(res):
-    '''
-    pag = Div(P(str(res)))
-    return pag
-    '''
-    consulta = Form(
-        Input(type="text", name="resposta_api", placeholder=f"Resultado da busca - {str(res)}", id="resposta_api"),
-        hx_target="#resp",
-        hx_swap="afterend"
-        )
-    
+#        consulta = Form(
+#        Input(type="text", name="resposta_api", value=f"Resultado da busca - {str(res)}",
+#        id="resposta_api"),
+#        hx_target="#resp",
+#        hx_swap="afterend"
+#        )
+#   
+    print(res["nome"])
+    formulario4 = Form(
+    Label("Código: ", Input(type="text", name="cod", placeholder="Código: ", id="cod", value=str(res["id"]))),
+    Label("Nome: ", Input(type="text", name="nome", placeholder="Nome: ", id="nome", value=str(res["nome"]))),
+    Label("Email: ", Input(type="email", name="mail", placeholder="Email: ", id="mail", value=str(res["email"]))),
+    Label("Fone: ", Input(type="tel", name="fone", placeholder="Fone: ", id="fone", value=str(res["fone"]))),       
+    Button("Enviar"),
+        method="post",
+        action="/adicionar_api",
+        hx_post= "/adicionar_api",
+        hx_target="#lista_api",
+        hx_swap="outherHTML"
         
-    
-    return consulta
+    )
+    return formulario4
 
