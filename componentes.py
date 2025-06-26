@@ -18,6 +18,7 @@ def gerar_form():
 
 
 def gerar_tab_api(lista2):
+    cab = Thead(Td("Código"), Td("Nome"), Td("Email"), Td("Fone"), Td("Excluir"), Td("Alterar"))
     itens_lista2 = [Tr(Td(item["id"]), 
                     Td(item["nome"]),
                     Td(item["email"]),
@@ -26,7 +27,20 @@ def gerar_tab_api(lista2):
                     Td(A("Alterar", hx_get= "", hx_target="#form2",hx_swap="outherHTML"))) 
                          for i, item in enumerate (lista2)]
    
-    lista_local2 = Table(*itens_lista2, id="lista_api")
+    lista_local2 = Table(cab, *itens_lista2, id="lista_api")
+    return lista_local2
+
+def gerar_tab_usu(lista2):
+    cab = Thead(Td("Código"), Td("Nome"), Td("Email"), Td("Senha"), Td("Ativo"), Td("Administrador"))
+    itens_lista2 = [Tr(Td(item["id"]), 
+                    Td(item["nome"]),
+                    Td(item["email"]),
+                    Td(item["senha"]),
+                    Td(item["ativo"]),
+                    Td(item["admin"]))
+                         for i, item in enumerate (lista2)]
+   
+    lista_local2 = Table(cab, *itens_lista2, id="lista_usu")
     return lista_local2
 
 def gerar_campos():
@@ -65,6 +79,7 @@ def gerar_form_cadastro():
         Label("Email: ", Input(type="email", name="email", placeholder="Email: ", id="email")),
         Label("Senha: ", Input(type="password", name="senha", placeholder="senha: ", id="senha")),        
         Button("Cadastar"),
+        Br(),Br(),
         Label("Resposta do Servidor: ", Input(type="text", name="resp", placeholder="Resposta: ", id="resp")),
         method="get",
         action="/enviar_cadastrar_usu",

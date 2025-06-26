@@ -2,27 +2,39 @@ from fasthtml.common import *
 from componentes import *
 import requests
 
-url = "http://127.0.0.1:8000/pedidos/listar"
-url2 = "http://127.0.0.1:8000/pedidos/pedido?id="
+url_lista_ped = "http://127.0.0.1:8000/pedidos/listar"
+url_pedido = "http://127.0.0.1:8000/pedidos/pedido?id="
 url_cadastro = "http://127.0.0.1:8000/autenticacao/criar_conta"
-response = requests.get(url)
-item = response.json()
+url_lista_usu = "http://127.0.0.1:8000/autenticacao/listar_usu"
 
 app, routes = fast_app()
 
 #lista_api = []
 
-@routes("/listar")
+@routes("/")
+def homepage():
+    links = A("Listar Todos os Pedidos", href="/listar_ped"), Br(), A("Cadastrar Usuários", href="/cadastrar_usu"),Br(), A("Listar Usuários", href="/listar_usu")
+    return Titled("Página Inicial", links)
+
+@routes("/listar_ped")
 def homepage2():
+    response = requests.get(url_lista_ped)
+    item = response.json()
     form1 = gerar_form()
     elemento_lista_api = gerar_tab_api(item)
     campos = gerar_campos()
     return Titled("Lista de API", form1, elemento_lista_api, campos)
 
+@routes("/listar_usu")
+def homepage2():
+    response = requests.get(url_lista_usu)
+    item = response.json()
+    elemento_lista_usu = gerar_tab_usu(item)
+    return Titled("Lista de Usuáios", elemento_lista_usu)
 
 @routes("/buscar_id", methods=["get"])
 def consultar(cod: int):
-    url3 = f'{url2}{cod}'
+    url3 = f'{url_pedido}{cod}'
     print(url3)
     response = requests.get(url3)
     data = response.json()
