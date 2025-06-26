@@ -2,14 +2,15 @@ from fasthtml.common import *
 from componentes import *
 import requests
 
-url = "http://127.0.0.1:8000/pedidos/"
+url = "http://127.0.0.1:8000/pedidos/listar"
 url2 = "http://127.0.0.1:8000/pedidos/pedido?id="
+url_cadastro = "http://127.0.0.1:8000/autenticacao/criar_conta"
 response = requests.get(url)
 item = response.json()
 
 app, routes = fast_app()
 
-lista_api = []
+#lista_api = []
 
 @routes("/listar")
 def homepage2():
@@ -31,5 +32,18 @@ def consultar(cod: int):
     else:
         return gerar_campos_naoencontrado()
 
+@routes("/cadastrar_usu")
+def homepage3():
+    form2 = gerar_form_cadastro()
+    #resposta = preencher_campo_resposta('resposta')
+    return Titled("Cadastrar Usuário", form2)
 
+@routes("/enviar_cadastrar_usu", methods=["get","post"])
+def cadastrar_usu(nome: str, email: str, senha: str):
+    url_nova = f'{url_cadastro}?email={email}&senha={senha}&nome={nome}'
+    response = requests.post(url_nova)
+    res = response.json()
+    return preencher_campo_resposta(res)
+
+    
 serve()

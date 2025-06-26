@@ -58,3 +58,25 @@ def preencher_campos(res):
         id='form2'        
     )
     return form2
+
+def gerar_form_cadastro():
+    form_cadastro = Form(
+        Label("Nome: ", Input(type="text", name="nome", placeholder="Nome: ", id="nome")),
+        Label("Email: ", Input(type="email", name="email", placeholder="Email: ", id="email")),
+        Label("Senha: ", Input(type="password", name="senha", placeholder="senha: ", id="senha")),        
+        Button("Cadastar"),
+        Label("Resposta do Servidor: ", Input(type="text", name="resp", placeholder="Resposta: ", id="resp")),
+        method="get",
+        action="/enviar_cadastrar_usu",
+        hx_get= "/enviar_cadastrar_usu",
+        hx_target="#resp",
+        hx_swap="outerHTML",
+        id='form_cadastro'
+    )
+    return form_cadastro
+
+
+def preencher_campo_resposta(res):
+    campo_resp =  Input(type="text", name="resp", id="resp", value=str(res),  hx_swap="outerHTML")
+    return campo_resp
+
