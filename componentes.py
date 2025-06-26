@@ -27,8 +27,20 @@ def cabecalho():
 )
         return links
 
+def gerar_form_busca():
+    formulario1 = Form(
+    Input(name='cod', type='search', placeholder='Buscar', id='cod'),
+    Input(type='submit', value='Buscar'),
+    role='search',
+        method="get",
+        action="/buscar_id",
+        hx_get= "/buscar_id",
+        hx_target="#form2",
+        hx_swap="outherHTML"
+    )
+    return formulario1
+       
 def gerar_form():
-        
     formulario = Form(
         Input(type="text", name="cod", placeholder="Digite o código para consultar: ", id="cod"),
         Button("Consultar"),

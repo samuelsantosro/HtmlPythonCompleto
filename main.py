@@ -23,7 +23,7 @@ def homepage2():
     menu = cabecalho()
     response = requests.get(url_lista_ped)
     item = response.json()
-    form1 = gerar_form()
+    form1 = gerar_form_busca()
     elemento_lista_api = gerar_tab_api(item)
     campos = gerar_campos()
     return Titled("Lista de API", menu, form1, elemento_lista_api, campos)
