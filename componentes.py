@@ -3,6 +3,30 @@ from urllib.parse import unquote
      
 ar = APIRouter()
 
+def cabecalho():
+        links = Nav(
+    Ul(
+        Li(
+            Strong('')
+        )
+    ),
+    Ul(
+        Li(
+            Button('Home', cls='secondary', hx_on_click="window.location.href='/'")
+        ),
+        Li(
+            Button('Listar Pedidos', cls='primary', hx_on_click="window.location.href='/listar_ped'")
+        ),
+        Li(
+            Button('Cadastrar Usuários', cls='primary', hx_on_click="window.location.href='/cadastrar_usu'")
+        ),
+        Li(
+            Button('Listar Usuários', cls='primary', hx_on_click="window.location.href='/listar_usu'")
+        )
+    )
+)
+        return links
+
 def gerar_form():
         
     formulario = Form(
